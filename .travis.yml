@@ -1,20 +1,9 @@
-sudo: false
-language: node_js
-node_js:
-  - '5'
-
+language: generic
 env:
   global:
-    - CXX=g++-4.8
-
-script: echo
-
-after_success:
-  - git init
-  - git add .
-  - git commit -m "after success"
-  - eval "$(ssh-agent -s)" #start the ssh agent
-  - chmod 600 .travis/deploy_key.pem # this key should have push access
-  - ssh-add .travis/deploy_key.pem
-  - git remote add deploy git@github.com:Adam-Goldman7/ido.git
-  - git push deploy master:foo2
+  - ENCRYPTION_LABEL: "bad56e023f38"
+  - COMMIT_AUTHOR_EMAIL: "admin@example.com"
+script: ./deploy.sh
+before_install:
+- openssl aes-256-cbc -K $encrypted_bad56e023f38_key -iv $encrypted_bad56e023f38_iv
+  -in travis-keys.pub.enc -out travis-keys.pub -d
