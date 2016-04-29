@@ -1,9 +1,9 @@
 language: generic
 env:
   global:
-  - ENCRYPTION_LABEL: "bad56e023f38"
-  - COMMIT_AUTHOR_EMAIL: "admin@example.com"
-script: ./deploy.sh
+  - ENCRYPTION_LABEL: 'bad56e023f38'
+  - COMMIT_AUTHOR_EMAIL: admin@example.com
+script: "./deploy.sh"
 before_install:
 - openssl aes-256-cbc -K $encrypted_bad56e023f38_key -iv $encrypted_bad56e023f38_iv
-  -in travis-keys.pub.enc -out travis-keys.pub -d
+  -in deploy_key.enc -out deploy_key -d
