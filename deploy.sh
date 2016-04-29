@@ -27,7 +27,7 @@ openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in deploy_key.enc -out 
 chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
-git push $SSH_REPO $SOURCE_BRANCH:$TARGET_BRANCH
+git push $SSH_REPO $SOURCE_BRANCH:$TARGET_BRANCH -f
 # Clone the existing gh-pages for this repo into out/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
 # git clone $REPO out
